@@ -1,14 +1,18 @@
 <script setup>
 import { ref } from 'vue';
-import { AI_ICP_backend } from 'declarations/AI_ICP_backend/index';
+import { icp_workshops_backend } from 'declarations/icp_workshops_backend/index';
 let greeting = ref('');
 
 async function handleSubmit(e) {
   e.preventDefault();
   const target = e.target;
-  const name = target.querySelector('#name').value;
-  await AI_ICP_backend.greet(name).then((response) => {
-    greeting.value = response;
+  const text = target.querySelector('#text').value;
+  await icp_workshops_backend.translate(text).then((response) => {
+    if ("Err" in response){
+      return alert(response.Err)
+    }
+    
+    greeting.value = response.Ok;
   });
 }
 </script>
@@ -19,8 +23,8 @@ async function handleSubmit(e) {
     <br />
     <br />
     <form action="#" @submit="handleSubmit">
-      <label for="name">Enter your name: &nbsp;</label>
-      <input id="name" alt="Name" type="text" />
+      <label for="text">Translate to german: &nbsp;</label>
+      <input id="text" alt="text" type="text" />
       <button type="submit">Click Me!</button>
     </form>
     <section id="greeting">{{ greeting }}</section>
