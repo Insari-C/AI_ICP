@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "AI_ICP_backend": {
+      "candid": "src/AI_ICP_backend/AI_ICP_backend.did",
+      "package": "AI_ICP_backend",
+      "type": "rust"
+    },
+    "AI_ICP_frontend": {
+      "dependencies": [
+        "AI_ICP_backend"
+      ],
+      "source": [
+        "src/AI_ICP_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "AI_ICP_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

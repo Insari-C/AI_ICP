@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/AI_ICP_backend"
+]
+resolver = "2"
