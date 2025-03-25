@@ -39,4 +39,19 @@ async fn translate(text: String) -> Result<String, String> {
     Ok(formated_res.0.translation_text)
 }
 
+#[ic_cdk::query]
+fn calculate(a: i32, b: i32, operator: String) -> String {
+    let result = match operator.as_str() {
+        "+" => Some(a + b),
+        "-" => Some(a - b),
+        "*" => Some(a * b),
+        "/" => if b != 0 { Some(a / b) } else { None },
+        "%" => if b != 0 { Some(a % b) } else { None },
+        _ => None,
+    };
 
+    match result {
+        Some(value) => format!("Result: {}", value),
+        None => "Wrong operator or division by zero".to_string(), 
+    }
+}
